@@ -4,5 +4,5 @@ node_js:
   - "7"
 deploy:
   provider: npm
-  email: denachural@gmail.com
+  email: larry.eliemenye@gmail.com
   token: 54156452-2a98-425d-ac6d-e03e150e994d
