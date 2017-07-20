@@ -156,21 +156,29 @@ class MangafoxService {
     /**
      * gets index page
      */
-    getIndex (options){
+    getTitleIndex (options){
         return fetchData('/manga').then(($) => {
             const data = [];
             const links = $('.series_preview');
+
+            // create and save title info objects
             links.each((i, link) => {
                 data.push({
                     m_id: link.attribs.rel,
                     url: link.attribs.href,
                     title: link.children[0].data,
                     is_ongoing: isStillOngoing(link.attribs.class),
-                    url_name: formatUrlTitle(link.children[0].data),
-                    cover: this.getCoverUrls(link.attribs.rel)
+                    url_name: formatUrlTitle(link.children[0].data)
                 });
             });
-            return { data };
+
+            // add title cover
+            return Promise.map(data, (titleInfo) => {
+                return this.getCoverUrls(titleInfo.m_id).then((cover) => {
+                    titleInfo.cover = cover;
+                    return titleInfo;
+                })
+            });
         }).catch((error) => {
             return Promise.reject(error);
         });
@@ -224,9 +232,9 @@ class MangafoxService {
      * @returns {{_s: string}}
      */
     getCoverUrls (mId) {
-        return {
+        return Promise.resolve({
             _s: `http://l.mfcdn.net/store/manga/${mId}/cover.jpg`
-        }
+        });
     }
 
 }

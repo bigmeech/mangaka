@@ -23,7 +23,7 @@ Supported Websites
  const manga = new Manga(optionsObject)
  const sourceApi = manga.fromSource().then((api) => api);
  sourceApi.then((api) => {
-    api.getTitles((titles) => {
+    api.getTitles().then((titles) => {
         console.log(titles);
     })
  })
