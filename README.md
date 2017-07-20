@@ -1,3 +1,5 @@
+![build status](https://travis-ci.org/bigmeech/mangaka.svg?branch=master)
+
 # What is this
 
 This is promise based library for extracting scanlated content from manga websites
