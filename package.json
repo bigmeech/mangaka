@@ -47,6 +47,7 @@
     "moment": "^2.18.1",
     "mongodb-stitch": "^0.0.16",
     "node-mangafox": "^0.0.9",
+    "promise-memorize": "^1.1.0",
     "request-promise": "^4.2.1",
     "tabletojson": "^0.6.0",
     "yargs": "^8.0.2"
