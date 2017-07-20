@@ -1,6 +1,6 @@
 {
   "name": "mangaka",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "description": "A library that fetches manga pages from multiple manga sites",
   "main": "lib/index.js",
   "jest": {

@@ -18,9 +18,13 @@ Supported Websites
     timeout: 10000
  }
 
- const mangaSource = new Manga(optionsObject)
- const
-        .then((api) => api);
+ const manga = new Manga(optionsObject)
+ const sourceApi = manga.fromSource().then((api) => api);
+ sourceApi.then((api) => {
+    api.getTitles((titles) => {
+        console.log(titles);
+    })
+ })
 ```
 
 # Options
