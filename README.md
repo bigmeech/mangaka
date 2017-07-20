@@ -19,6 +19,7 @@ Supported Websites
  }
 
  const mangaSource = new Manga(optionsObject)
+ const
         .then((api) => api);
 ```
 
@@ -26,6 +27,7 @@ Supported Websites
 - **source**: specify a source to crawl from. Only supports mangafox for now. (Pull requests are welcomed)
 - **concurrency**: specify how many simulataneous connections to fire off
 - **timeout**: specify a connection timeout.
+- **useCache**: Memoize huge requests.
 
 # API
 
@@ -35,15 +37,6 @@ Returns an index of all titles with corresponding ids
     Query filter for params. filter by alphabets A - Z
 - **return** :
     A promise which eventually resolves to an array of title objects;
-#### Sample
-```js
-     const api = mangaSource.then((api) => {
-                return api
-                    .getTitleIndex()
-                    .then((titles) => tites )
-            });
-
-```
 
 ### api.getTitle(titleId)
 Returns some information about a particular title
@@ -51,16 +44,6 @@ Returns some information about a particular title
     Id of the title. See call to getTitleIndex
 - **return** :
     Some more information about the title in an expanded title object.
-#### Sample
-```js
-     const mangaId = 120023;
-     const api = mangaSource.then((api) => {
-                return api
-                    .getTitle(mangaId)
-                    .then((titles) => tites )
-            });
-
-```
 
 ### api.getChapters(titleId, [volumeId])
 Return all chapter info for a particular volume of a title
@@ -69,13 +52,3 @@ Return all chapter info for a particular volume of a title
     volume number of the title (if available)
 - **return** :
     a promise that will eventually resolve to an object containing chapters in the volume.
-#### Sample
-```js
-     const mangaId = 120023;
-     const api = mangaSource.then((api) => {
-                return api
-                    .getChapters(mangaId)
-                    .then((chapters) => chapters )
-            });
-
-```
