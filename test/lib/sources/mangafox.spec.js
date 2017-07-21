@@ -1,7 +1,7 @@
 import Mangaka from '../../../src';
 
 let originalTimeout;
-let testMid = 11362;
+let testMid = "11362";
 
 describe('Mangafox', function (){
 
@@ -40,6 +40,18 @@ describe('Mangafox', function (){
                 expect(title).toHaveProperty('url_name');
                 expect(title).toHaveProperty('is_ongoing');
                 expect(title).toHaveProperty('cover._s');
+            });
+        });
+    });
+
+    test('should return title info when title id is supplied', () => {
+        const mangafox = new Mangaka({ source:'mangafox'});
+        return mangafox.fromSource().then((api) => {
+            return api.getTitleInfo(testMid).then((result) => {
+                expect(result).toHaveProperty('content_info');
+                expect(result).toHaveProperty('synopsis');
+                expect(result).toHaveProperty('rating');
+                expect(result).toHaveProperty('info');
             });
         });
     });

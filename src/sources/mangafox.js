@@ -189,11 +189,11 @@ class MangafoxService {
      * @param mid
      */
     getTitleInfo (mId) {
-        return this.getTitlePage(mId, mangaIndex)
+        return this.getTitlePage(mId)
             .then(($) => {
-                const manga = mangaIndex.find((manga) =>  manga.m_id === mId);
+                // const manga = idx.find((manga) =>  manga.m_id === mId);
                 const info = tableJson.convert($('div#title').html());
-                return Object.assign(manga, createTitleInfo($, info));
+                return createTitleInfo($, info);
             })
             .catch((error) => Promise.reject(error));
     }
@@ -218,9 +218,9 @@ class MangafoxService {
      * @param mId
      */
     getTitlePage (mId) {
-        return this.getTitles()
-            .then((manga) => {
-                console.log(manga);
+        return this.getTitleIndex()
+            .then((titles) => {
+                const manga = titles.find((title) => title.m_id === mId );
                 return fetchData(`/manga/${ manga.url_name }`);
             })
             .catch((err) => Promise.reject(err));
